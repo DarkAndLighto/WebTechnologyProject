@@ -15,7 +15,7 @@ body{
     list-style: none;
 }
 
-#text-cointainer .main-paragraph{
-    background-color: bisque;
+.main-paragraph{
+    background-color: red;
     border-radius: 44px;
 }
