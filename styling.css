@@ -1,0 +1,42 @@
+body{
+    background-color:gray;
+}
+
+.navbar-main{
+    padding-top: 20px;
+}
+
+.navbar{
+    border-radius: 12px;
+    background-color:darkgray;
+}
+
+.navbar-main a{
+    text-decoration: none;
+    color: black;
+    display: block;
+
+    padding: 12px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease, color 0.7s ease;
+}
+.navbar-main .home-button{
+    background-color: rgb(255, 216, 169);
+}
+.navbar-main .home-button:hover{
+    background-color: rgb(255, 211, 157);
+    color: white;
+}
+
+.navbar-nav a:hover{
+    background-color: rgb(255, 211, 157);
+    color: white;
+}
+
+
+.text-body {
+    background-color: darkgray;
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 20px;
+}
