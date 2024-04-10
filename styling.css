@@ -1,42 +1,86 @@
 body{
     background-color:gray;
+    background-image: url(background-4.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .navbar-main{
     padding-top: 20px;
 }
-
-.navbar{
-    border-radius: 12px;
-    background-color:darkgray;
-}
-
 .navbar-main a{
     text-decoration: none;
-    color: black;
+    color: rgb(225, 225, 225);
     display: block;
+    font-size: 18px;
 
     padding: 12px;
     border-radius: 12px;
     transition: background-color 0.3s ease, color 0.7s ease;
 }
 .navbar-main .home-button{
-    background-color: rgb(255, 216, 169);
+    background-color: rgb(204, 78, 192);
 }
 .navbar-main .home-button:hover{
-    background-color: rgb(255, 211, 157);
+    background-color: rgb(125, 91, 121);
     color: white;
 }
-
 .navbar-nav a:hover{
-    background-color: rgb(255, 211, 157);
+    background-color: rgb(125, 91, 121);
     color: white;
 }
 
 
 .text-body {
-    background-color: darkgray;
-    border-radius: 12px;
     padding: 12px;
     margin-top: 20px;
+}
+.text-body p{
+    font-size: 22px;
+    color: rgb(225, 225, 225);
+}
+.portf-1{
+    border-width: 2px;
+    border-radius: 12px;
+    color: black;
+    border-style: solid;
+    padding: 0px;
+}
+
+.blurry-box{
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.135);
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+    backdrop-filter: blur(15px);
+}
+
+.tri-area{
+    margin-top: 20px;
+    color: rgb(225, 225, 225);
+}
+.tri-area-box{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: backdrop-filter 0.3s ease, border-width 0.3s ease, font-size 0.3s ease;
+}
+.tri-area-box:hover{
+    backdrop-filter: none;
+    border-width: 12px;
+    font-size: 22px;
+}
+.tri-area-box-icon{
+    width: 60px; 
+    height: 60px; 
+    margin-top: 12px;
+    transition: color 0.3s ease, width 0.3s ease, height 0.3s ease, filter 0.3s ease;
+}
+.tri-area-box:hover .tri-area-box-icon{
+    filter: invert(100%);
+    width: 80px;
+    height: 80px;
 }
