@@ -66,7 +66,6 @@ body{
     color: rgb(225, 225, 225);
 }
 .tri-area-box{
-    margin-top: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -87,4 +86,46 @@ body{
     filter: invert(100%);
     width: 80px;
     height: 80px;
+}
+
+.decorative-line {
+    margin: auto;
+
+    max-width: 90%;
+    border-top: 2px solid rgb(80, 80, 80);
+    margin-bottom: 10px; 
+
+    border-radius: 2px; /* Maybe change */
+}
+
+.circular-bar{
+    --width: 75px;
+    --height: 75px;
+    --degrees: 270deg;
+    --outerColor: white;
+    --innerColor: black;
+    --clearColor: red;
+    --centerText: "text";
+    
+    width: var(--width);
+    height: var(--height);
+    border-radius: 50%;
+
+    background: conic-gradient(var(--clearColor) var(--degrees), var(--outerColor) 0deg);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.circular-bar::before {
+    content: var(--centerText);
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--innerColor);
+    color: white;
+    width: calc(var(--width) * 0.9);
+    height: calc(var(--height) * 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
