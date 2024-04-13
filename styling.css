@@ -57,15 +57,6 @@ body {
     padding: 0px;
 }
 
-.blurry-box {
-    border-radius: 12px;
-    background-color: rgba(255, 255, 255, 0.135);
-    border-width: 2px;
-    border-color: white;
-    border-style: solid;
-    backdrop-filter: blur(15px);
-}
-
 .tri-area {
     margin-top: 20px;
     color: rgb(225, 225, 225);
@@ -139,4 +130,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.blurry-box {
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.135);
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+    backdrop-filter: blur(15px);
 }

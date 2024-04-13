@@ -20,7 +20,7 @@
     max-width: 150px;
 }
 
-.cv-box-1-row-2 h1 {
+.cv-box-1-row-2 {
     color: red;
     text-align: center;
 }
@@ -87,5 +87,89 @@
 
 
 .cv-box-2-row-1 {
-    color: red;
+    color: rgb(255, 255, 255);
+
+    margin: 25px;
+    font-weight: bold;
+
+    background-image: url(Background-3.jpg);
+    background-size: cover;
+    background-position: 50%;
+}
+.cv-box-2-row-1 h1{
+    color: rgb(255, 255, 255);
+
+    margin: 0px;
+}
+.cv-box-2-row-1 button{
+    border-style: none;
+    background-color: yellow;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 4%;
+}
+.col-left-2{
+    padding-top: 40px;
+    padding-left: 40px;
+    row-gap: 200px;
+    column-gap: 200px;
+}
+
+.col-right-2{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+.col-right-2 img{
+    max-width: 200px;
+}
+
+.cv-box-2-row-2{
+    padding: 20px;
+    font-weight: bold;
+}
+.par-1{
+    font-size: 20px;
+    color: yellow;
+}
+.par-2{
+    color: white;
+}
+
+
+.cv-box-2-row-3{
+    color: white;
+    font-size: 32px;
+    padding-left: 80px;
+    font-weight: bold;
+}
+
+
+.cv-box-2-row-4
+{
+    margin: 20px;
+    font-weight: bold;
+}
+.header-row-4{
+    font-size: 24px;
+}
+.paragraph-row-4{
+    font-size: 18px;
+    color: rgb(197, 197, 197);
+}
+.a-row-4{
+    text-decoration: none;
+    color: rgb(255, 255, 86);
+}
+
+.normal-box{
+    /* background-color: rgba(255, 255, 255, 0.135); */
+    text-align: left;
+    padding: 30px;
+    background-color: rgb(152, 69, 152);
+    color:rgb(255, 255, 255);
+    margin: 12px;
 }
