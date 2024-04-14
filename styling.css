@@ -15,16 +15,13 @@ body {
 } */
 .navbar-main a {
     text-decoration: none;
-    color: rgb(225, 225, 225);
+    color: white;
     display: block;
     font-size: 18px;
 
     padding: 12px;
     border-radius: 12px;
     transition: background-color 0.3s ease, color 0.7s ease;
-}
-
-.navbar-main .home-button {
 }
 
 .navbar-main .home-button:hover {
