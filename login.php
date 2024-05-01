@@ -2,35 +2,32 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    //echo $email;
-    //echo $password;
-    /* THIS WILL --NOT-- WORK WITH WAMP */
     $con = new mysqli("localhost", "id22019662_ammar", "Greenberrypie1!", "id22019662_projectdatabase");
-    if ($con->connect_error)
-    {
-        die("Failed to connect: " .$con->connect_error);
-    } else
-    {
-        $stmt = $con->prepare("select * from ProjectDatabase where email = ?");
-        $stmt -> bind_param("s", $email);
-        $stmt -> execute();
-        $stmt_result = $stmt->get_result();
-        if ($stmt_result -> num_rows > 0)
-        {
-            $data = $stmt_result->fetch_assoc();
-            if ($data['password'] === $password)
-            {
-                echo "Password is CORRECT and it is $password";
-                echo "<script>alert('Login Successful. Welcome $email!');</script>";
-            } else
-            {
-                echo "Password is WRONG and it is $password";
-                echo "<script>alert('Login Failed! Please try again.');</script>";
-                header("Location: login.html");
-            }
-        }
+    if ($con->connect_error) {
+        die("Failed to connect: " . $con->connect_error);
     }
+
+    $stmt = $con->prepare("SELECT email, password FROM `ProjectDatabase` WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->bind_result($db_email, $db_password);
+    $stmt->fetch();
+
+    if ($db_email === $email) {
+        if ($db_password === $password) {
+            $message = "CORRECT password. Welcome back $email!";
+        } else {
+            $message = "INCORRECT password. Please try again.";
+        }
+    } else {
+        $message = "User '$email' not found.";
+    }
+
+    $stmt->close();
+    $con->close();
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,11 +47,18 @@
 
     <div class="container"> 
         <div class="blurry-box return-home">
-            <a href="index.html">
-                <button>
-                    Return home
-                </button>
-            </a>
+            <div class="row">
+                <div class="col-12" id="message-box">
+                    <h1> <?php echo $message; ?> </h1>
+                </div>
+                <div class="col-12">
+                    <a href="login.html">
+                        <button>
+                            Return to login
+                        </button>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
   

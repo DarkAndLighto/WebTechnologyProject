@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My City</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="styling.css" rel="stylesheet" />
+    <link href="MyCity.css" rel="stylesheet" />
+</head>
+
+<body>
+
+
+    <div class="container" style="max-width: 65%; padding: 0;">
+        <div class="navbar-main">
+            <nav class="navbar blurry-box navbar-expand-lg sticky-top">
+                <div class="container-fluid">
+                    <a class="home-button" href="index.html">Ammar Ajam</a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMe"
+                        aria-controls="collapseMe" aria-expanded="false" aria-label="Toggle navigation"
+                        style="border-color: white;">
+                        <span class="bi bi-arrows-vertical" style="color: white;"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="collapseMe">
+                        <ul class="navbar-nav">
+                            <li><a href="CV.html" class="cv-tag active">CV</a></li>
+                            <li><a href="#"
+                                style="background-color: rgb(125, 91, 121);">My City</a></li>
+                            <li><a href="#">Heritage</a></li>
+                            <li><a href="#">Personal Interests</a></li>
+                        </ul>
+
+                        <ul class="navbar-nav ms-auto">
+                            <li><a href="login.html">Login</a></li>
+                            <li><a href="#">Contact Page</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+
+
+
+    <div class="container-fluid" style="padding: 0;">
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators slider-indicator">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 3"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active slider-item">
+                    <a class="nav-link" href="#item-1">
+                        <img src="images/Aleppo Citadel.png" class="d-block w-100">
+                    </a>
+                    <div class="carousel-caption slider-caption">
+                        <p>Aleppo Citadel</p>
+                        <!-- <p>Some representative placeholder content for the first slide.</p> -->
+                    </div>
+                </div>
+                <div class="carousel-item slider-item">
+                    <a class="nav-link" href="#item-1">
+                        <img src="images/Aleppo Great Mosque.png" class="d-block w-100">
+                    </a>
+                    <div class="carousel-caption slider-caption">
+                        <p>The Great Mosque</p>
+                        <!-- <p>Some representative placeholder content for the second slide.</p> -->
+                    </div>
+                </div>
+                <div class="carousel-item slider-item">
+                    <img src="images/Church of Saint Simeon Stylites.png" class="d-block w-100">
+                    <div class="carousel-caption slider-caption">
+                        <p>Church of Saint Simeon Stylites</p>
+                        <!-- <p>Some representative placeholder content for the third slide.</p> -->
+                    </div>
+                </div>
+                <div class="carousel-item slider-item">
+                    <img src="images/Al Rahman Mosque.png" class="d-block w-100">
+                    <div class="carousel-caption slider-caption">
+                        <p>Al Rahman Mosque</p>
+                        <!-- <p>Some representative placeholder content for the third slide.</p> -->
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="blurry-box information-box" id="item-1">
+            <div class="row">
+                <div class="col-sm-12 col-md-6" style="color: red;">
+                    Al-Rahman Mosque or Al-Rahman Mosque is located on King Faisal Street in the Syrian city of Aleppo.
+                    This mosque is distinguished by its distinctive construction method and is one of the unique 
+                    mosques in construction. It is a mosque built according to modern systems on ancient Islamic 
+                    architectural foundations dating back to the first Islamic eras, and this is indicated by the 
+                    square minarets with quadrilateral sides. Which dates back to the Umayyad era, and some residents
+                    mention that stones in the shape of pages from the Holy Qur’an were built on some of its outer 
+                    walls, on which were written verses from Surat Al-Rahman.
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <img src="images/Al Rahman Mosque.png" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://kit.fontawesome.com/41752380dd.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
