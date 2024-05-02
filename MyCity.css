@@ -1,31 +1,60 @@
 .slider-item{
   margin-top: 20px;
   padding: 0;
-  height: 480px;
+  height: 540px;
 }
 .slider-item img{
   height: 100%;
   object-fit: cover;
   animation: slideAnimation 8s infinite alternate ease-in-out;
 }
+@keyframes slideAnimation {
+  0% {
+    object-position: 40% 0%;
+  }
+  100% {
+    object-position: 40% 80%;
+  }
+}
 .slider-item p{
   font-size: 60px;
   margin: 0px;
   color: rgb(219, 219, 219);
 }
+.slider-item a{
+  height: 100%;
+}
 
-  @keyframes slideAnimation {
-    0% {
-      object-position: 40% 0%;
-    }
-    100% {
-      object-position: 40% 80%;
-    }
-  }
 
 .slider-indicator, .slider-caption{
     display: flex;
     justify-content: left;
+}
+
+.aleppo-box{
+  margin-top: 40px;
+}
+.alp-box-title{
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 50px;
+  color: white;
+}
+.alp-box-sub-title{
+  display: flex;
+  justify-content: left;
+  padding-left: 10%;
+  font-weight: bold;
+  font-size: 40px;
+  color: white;
+}
+.alp-box-description{
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+  padding: 12px;
 }
 
 .information-box{
@@ -34,4 +63,18 @@
 .information-box img{
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
+}
+.inf-box-title{
+  margin-left: 20px;
+  font-weight: bold;
+  color: white;
+  font-size: 44px;
+}
+.inf-box-description{
+  margin-left: 20px;
+  margin-right: 20px;
+  color: white;
+}
+.inf-box-image{
+  height: 100%;
 }

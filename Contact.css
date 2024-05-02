@@ -1,0 +1,51 @@
+.title-control{
+    display: flex;
+    justify-content: left;
+    background: linear-gradient(45deg, pink, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 44px;
+    padding-left: 10%;
+    padding: 12px;
+}
+
+.form-main{
+    margin-top: 20px;
+    padding: 20px;
+    padding-bottom: 0px;
+}
+.form-main input{
+    color: black;
+}
+.form-main input:focus{
+    border: 4px;
+    border-style: solid;
+    border-color:pink;
+}
+.form-main textarea:focus{
+    border: 4px;
+    border-style: solid;
+    border-color:pink;
+}
+
+.form-main button{
+    text-decoration: none;
+    background-color: pink;
+    color: black;
+    border: none;
+    width: 100%;
+    height: 60px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    transition: background-color 0.5s ease;
+}
+.form-main button:hover{
+    background-color: rgb(255, 137, 157);
+}
+
+.row-control{
+    margin-bottom: 20px;
+}
+.row-control input {
+    height: 830px;
+}
