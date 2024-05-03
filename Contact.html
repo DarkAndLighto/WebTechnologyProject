@@ -45,67 +45,92 @@
     </div>
 
 
-    <div class="container" style="max-width: 40%; padding: 0;">
+    <div class="container container-sizing" style="padding: 0;">
         <div class="blurry-box form-main">
-
-            <div class="row title-control">
-                Send me an email!
-            </div>
-
-            <div class="row row-control">
-                <div class="col-6">
-                    <div class="form-floating">
-                        <input class="form-control" id="name" name="name" placeholder="" required>
-                        <label>Name</label>
+            <form action="Contact.php" method="post" id="myForm" enctype="multipart/form-data">
+                <div class="row title-control">
+                    Send me an email!
+                </div>
+    
+                <div class="row row-control row-gap-2">
+                    <div class="col-md-12 col-lg-6">
+                        <div class="form-floating">
+                            <input class="form-control" id="name" name="name" placeholder="">
+                            <label for="name">Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <div class="form-floating">
+                            <input class="form-control" id="lastname" name="lastname" placeholder="">
+                            <label for="lastname">Last name</label>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-floating">
-                        <input class="form-control" id="lastname" name="lastname" placeholder="" required>
-                        <label>Last name</label>
+    
+                <div class="row row-control row-gap-2">
+                    <div class="col-md-12 col-lg-6">
+                        <div class="form-floating">
+                            <input class="form-control" id="email" name="email" placeholder="">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <div class="form-floating">
+                            <input class="form-control" id="phone" name="phone" placeholder="">
+                            <label for="phone">Phone</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row row-control">
-                <div class="col-6">
-                    <div class="form-floating">
-                        <input class="form-control" id="name" name="name" placeholder="" required>
-                        <label>Email</label>
+    
+                <div class="row row-control">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="form-floating">
+                            <textarea class="form-control multiline-input" id="message" name="message" placeholder="" style="resize: none; height: 200px;"></textarea>
+                            <label for="message">Message</label>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-floating">
-                        <input class="form-control" id="lastname" name="lastname" placeholder="" required>
-                        <label>Phone</label>
+    
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <button type="submit">Submit</button>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <button type="button" onclick="clearForm()">Clear</button>
                     </div>
                 </div>
-            </div>
-
-            <div class="row row-control">
-                <div class="col">
-                    <div class="form-floating">
-                        <textarea required class="form-control multiline-input" id="message" name="message" placeholder="" style="resize: none; height: 200px;"></textarea>
-                        <label>Message</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <button>
-                        Submit
-                    </button>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <button>
-                        Clear
-                    </button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
+    
+    
 
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            var name = document.getElementById("name").value;
+            var lastname = document.getElementById("lastname").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var message = document.getElementById("message").value;
+    
+            if (name === "" || lastname === "" || email === "" || phone === "" || message === "") {
+                alert("Please fill in all fields.");
+                event.preventDefault();
+            } else if (!validateEmail(email)) {
+                alert("Please enter a valid email address.");
+                event.preventDefault();
+            }
+        });
+    
+        function validateEmail(email) {
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
+    
+        function clearForm() {
+            document.getElementById("myForm").reset();
+        }
+    </script>
     
     <script src="https://kit.fontawesome.com/41752380dd.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

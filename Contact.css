@@ -1,3 +1,7 @@
+.container-sizing{
+    padding: 0;
+    max-width: 40%;
+}
 .title-control{
     display: flex;
     justify-content: left;
@@ -28,7 +32,7 @@
     border-color:pink;
 }
 
-.form-main button{
+.form-main button, .form-confirm button{
     text-decoration: none;
     background-color: pink;
     color: black;
@@ -39,7 +43,7 @@
     margin-bottom: 12px;
     transition: background-color 0.5s ease;
 }
-.form-main button:hover{
+.form-main button:hover, .form-confirm button:hover{
     background-color: rgb(255, 137, 157);
 }
 
@@ -48,4 +52,25 @@
 }
 .row-control input {
     height: 830px;
+}
+
+.form-confirm{
+    color: pink;
+    margin-top: 20px;
+    padding: 20px;
+}
+.form-confirm textarea{
+    resize: none;
+    background-color: white;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+@media only screen and (max-width: 990px) {
+    .container {
+        max-width: 65%;
+    }
+    .title-control {
+        font-size: 26px;
+    }
 }
