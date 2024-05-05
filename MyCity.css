@@ -19,7 +19,7 @@
 .slider-item p{
   font-size: 60px;
   margin: 0px;
-  color: rgb(219, 219, 219);
+  color: white;
 }
 .slider-item a{
   height: 100%;
@@ -29,6 +29,9 @@
 .slider-indicator, .slider-caption{
     display: flex;
     justify-content: left;
+}
+.slider-caption p{
+  text-shadow: 2px 2px 10px black  ;
 }
 
 .aleppo-box{

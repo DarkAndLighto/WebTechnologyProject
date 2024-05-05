@@ -1,0 +1,27 @@
+.game-box{
+    position: relative;
+    transition: scale 0.2s ease;
+}
+.game-box:hover{
+    scale: 1.1;
+    z-index: 9999;
+}
+
+.row-1 img{
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    object-fit: cover;
+    height: 400px;
+    object-position: 50% 10%;
+    transition: object-position 1s ease;
+}
+.row-1 img:hover{
+    object-position: 65% 80%;
+}
+
+.row-2{
+    display: flex;
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+}

@@ -1,0 +1,1 @@
+curl --location 'https://api.rawg.io/api/creators?key=51f03d61ff3442008e9b1aac81f4ca38'
