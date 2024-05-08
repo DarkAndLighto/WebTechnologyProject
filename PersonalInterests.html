@@ -44,26 +44,40 @@
                 </nav>
             </div>
         </div>
-        <button onclick="GetGameByID(422, 1)" style="background-color: red; width: 400px; height: 400px; color: white;">
-            Hello
-        </button>
 
-        <div class="container" style="max-width: 80%;">
+        <div class="container" style="max-width: 80%; margin-top: 50px;">
+            <div class="row boxes-1 row-gap-5">
+                
+            </div>
+        </div>
+
+        <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-xl-4">
-                    <div class="blurry-box game-box" style="color: white;">
-                        <div class="row-1">
-                            <img src="images/Al Rahman Mosque-1.png" class="img-fluid game-background-1">
-                        </div>
-                        <div class="row row-2">
-                            <div class="game-name-1">
-                                placeHolder
+                <div class="api-header">
+                    Try out the API
+                </div>
+                <div class="row-api-2">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <textarea class="form-control" id="getMyId" placeholder="Password" style="height: 100px;"></textarea>
+                                <label for="floatingPassword">game id, name</label>
                             </div>
+                        </div>
+                        <div class="col-6">
+                            <button onclick="GetGameByIDWrapper(2)">
+                                New Box
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            
+        </div>
+
+        <div class="container" style="max-width: 80%; margin-top: 40px; padding-bottom: 500px;">
+            <div class="row boxes-2 row-gap-5">
+                
+            </div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
