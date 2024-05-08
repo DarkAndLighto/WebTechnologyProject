@@ -53,36 +53,43 @@ body {
     padding: 0px;
 }
 
-.tri-area {
-    margin-top: 20px;
-    color: rgb(225, 225, 225);
-}
-
 .tri-area-box {
+    margin-top: 20px;
+    padding-bottom: 20px;
     display: flex;
     align-items: center;
+    text-align: center;
     flex-direction: column;
-    transition: backdrop-filter 0.3s ease, border-width 0.3s ease, font-size 0.3s ease;
+    transition: backdrop-filter 0.3s ease, scale 0.2s ease;
 }
-
-.tri-area-box:hover {
-    backdrop-filter: none;
-    border-width: 12px;
-    font-size: 22px;
+.tri-area-box p{
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
-
+.tri-area-box a{
+    color: rgb(225, 225, 225);
+    text-decoration: none;
+}
 .tri-area-box-icon {
     width: 60px;
     height: 60px;
     margin-top: 12px;
-    transition: color 0.3s ease, width 0.3s ease, height 0.3s ease, filter 0.3s ease;
+    transition: color 0.3s ease, filter 0.3s ease;
+}
+.tri-area-box:hover {
+    scale: 1.2;
+    backdrop-filter: none;
+    z-index: 1;
+    
+    .tri-area-box-icon{
+        filter: invert(100%);
+    }
+}
+.tri-box-title{
+    font-size: 32px;
+    font-weight: bold;
 }
 
-.tri-area-box:hover .tri-area-box-icon {
-    filter: invert(100%);
-    width: 80px;
-    height: 80px;
-}
 
 .decorative-line {
     margin: auto;
@@ -115,7 +122,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 .circular-bar::before {
     content: var(--centerText);
     position: absolute;

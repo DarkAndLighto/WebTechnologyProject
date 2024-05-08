@@ -17,8 +17,10 @@
 }
 
 .cv-box-1-row-2 {
-    color: red;
+    color: rgb(200, 200, 200);
+    font-weight: bold;
     text-align: center;
+    font-size: 36px;
 }
 
 .cv-box-1-row-3 p {
@@ -88,7 +90,8 @@
     margin: 25px;
     font-weight: bold;
 
-    background-image: url(images/Background-3.jpg);
+    /* images/Background-3.jpg */
+    background-image: url(https://www.breakingbad-locations.com/wp-content/uploads/2014/09/E09-4-Days-Out.mkv_000215532.jpg);
     background-size: cover;
     background-position: 50%;
 }
@@ -124,7 +127,8 @@
 }
 
 .cv-box-2-row-2{
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     font-weight: bold;
 }
 .par-1{
@@ -134,7 +138,10 @@
 .par-2{
     color: white;
 }
-
+.cv-box-2-row-2 .row {
+    display: flex;
+    align-items: center;
+}
 
 .cv-box-2-row-3{
     color: white;

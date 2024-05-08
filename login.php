@@ -1,30 +1,47 @@
 <?php
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+$email = $_POST['email'];
+$password = $_POST['password'];
 
-    $con = new mysqli("localhost", "id22019662_ammar", "Greenberrypie1!", "id22019662_projectdatabase");
-    if ($con->connect_error) {
-        die("Failed to connect: " . $con->connect_error);
-    }
-
-    $stmt = $con->prepare("SELECT email, password FROM `ProjectDatabase` WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->bind_result($db_email, $db_password);
-    $stmt->fetch();
-
-    if ($db_email === $email) {
-        if ($db_password === $password) {
-            $message = "CORRECT password. Welcome back $email!";
-        } else {
-            $message = "INCORRECT password. Please try again.";
-        }
+if(empty($email) || empty($password)) {
+    $message = "Please enter both email and password.";
+} else {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $message = "Invalid email format.";
     } else {
-        $message = "User '$email' not found.";
-    }
+        $con = new mysqli("localhost", "id22019662_ammar", "Greenberrypie1!", "id22019662_projectdatabase");
+        if ($con->connect_error) {
+            die("Failed to connect: " . $con->connect_error);
+        }
 
-    $stmt->close();
-    $con->close();
+        $stmt = $con->prepare("SELECT email, password FROM `ProjectDatabase` WHERE LOWER(email) = LOWER(?)");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->bind_result($db_email, $db_password);
+        $stmt->fetch();
+
+        if ($db_email !== null) {
+            $db_email_lower = strtolower($db_email);
+            $email_lower = strtolower($email);
+
+            if ($db_email_lower === $email_lower) {
+                if ($db_password === $password) {
+                    $message = "CORRECT password. Welcome back $email!";
+                } else {
+                    $message = "INCORRECT password. Please try again.";
+                }
+            } else {
+                $message = "User '$email' not found.";
+            }
+        } else {
+            $message = "User '$email' not found.";
+        }
+
+        $stmt->close();
+        $con->close();
+    }
+}
+
+echo $message;
 ?>
 
 
