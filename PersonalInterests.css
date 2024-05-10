@@ -82,6 +82,9 @@
     font-size: 75px;
 }
 
+.row-api-2{
+    row-gap: 135px;
+}
 .row-api-2 textarea, .row-api-2 button{
     width: 100%;
     background-color: white;

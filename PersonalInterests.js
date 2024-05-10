@@ -221,3 +221,27 @@ function printId(){
 </div> 
 */
 
+function CallID() {
+    const myHeaders = new Headers();
+    myHeaders.append("X-MAL-CLIENT-ID", "db4efc0dc6a74e56b48f4287576d15d0");
+    myHeaders.append("Authorization", "Basic ZGI0ZWZjMGRjNmE3NGU1NmI0OGY0Mjg3NTc2ZDE1ZDA6MDQ3ZDIxNGI4MGMzMDcwMjY0MDFiODJhNzNhNmVjZmMzZTNlYTQwY2NkOTgxZjJlMGZhODgzY2JjNjI4NjkxYQ==");
+
+    const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow"
+    };
+
+    const textarea = document.getElementById('getMyId');
+    const id = textarea.value;
+
+    // Using a CORS proxy
+    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    const apiUrl = `https://api.myanimelist.net/v2/anime/${id}?fields=id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,nsfw,created_at,updated_at,media_type,status,genres,my_list_status,num_episodes,start_season,broadcast,source,average_episode_duration,rating,pictures,background,related_anime,related_manga,recommendations,studios,statistics`;
+    const finalUrl = proxyUrl + apiUrl;
+
+    fetch(finalUrl, requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
+}

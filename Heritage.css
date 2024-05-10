@@ -1,0 +1,61 @@
+.anthem-box{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: white;
+    animation: backgroundColor 7s infinite ease;
+}
+.anthem-box p{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-weight: bold;
+    font-style: italic;
+
+    font-size: 20px;
+}
+
+.anthem-box .anthem-title{
+    font-size: 40px;
+}
+
+@keyframes backgroundColor {
+    0%{
+        background-color: rgba(255, 0, 0, 0.5);
+    }
+    25%{
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+    50%{
+        background-color: rgba(0, 128, 0, 0.5);
+    }
+    75%{
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    100%{
+        background-color: rgba(255, 0, 0, 0.5);
+    }
+}
+
+.anthem-buttons{
+    display: flex;
+    justify-content: center;
+}
+.anthem-buttons button{
+    background-color: white;
+    border-radius: 12px;
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
+    padding: 12px;
+
+    transition: background-color 0.2s ease, scale 0.2s ease;
+}
+.anthem-buttons button:hover{
+    background-color: red;
+    scale: 1.1;
+}

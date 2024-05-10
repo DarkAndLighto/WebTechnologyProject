@@ -8,7 +8,7 @@ if(empty($email) || empty($password)) {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $message = "Invalid email format.";
     } else {
-        $con = new mysqli("localhost", "id22019662_ammar", "Greenberrypie1!", "id22019662_projectdatabase");
+        $con = new mysqli("localhost", "ezxvuuki_id22019662_projectdatabase", "PtKdvCaMaeBZPeHBV6hR", "ezxvuuki_id22019662_projectdatabase");
         if ($con->connect_error) {
             die("Failed to connect: " . $con->connect_error);
         }

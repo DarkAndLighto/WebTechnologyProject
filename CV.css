@@ -90,8 +90,7 @@
     margin: 25px;
     font-weight: bold;
 
-    /* images/Background-3.jpg */
-    background-image: url(https://www.breakingbad-locations.com/wp-content/uploads/2014/09/E09-4-Days-Out.mkv_000215532.jpg);
+    background-image: url(images/Background-3.jpg);
     background-size: cover;
     background-position: 50%;
 }
