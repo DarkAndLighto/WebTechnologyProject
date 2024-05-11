@@ -26,15 +26,79 @@ function GetGameByID(id, boxid, includeDeleteButton = true) {
         const rating = data.rating;
         const genreNames = data.genres.map(genre => " " +genre.name);
         const description = data.description_raw;
-        addNewBox(gameName, backgroundImage, releaseDate, rating, genreNames, description, includeDeleteButton, boxid)
+        addNewBox(gameName,
+            backgroundImage,
+            'Release Date:@'+releaseDate,
+            'Rating:@'+rating,
+            'Genre:@'+genreNames,
+            `<textarea readonly>${description}</textarea>`,
+            includeDeleteButton,
+            boxid)
     })
     .catch(error => console.error(error));
 }
-/* GetGameByID(422, 1, false);
-GetGameByID(19345, 1, false);
-GetGameByID(50734, 1, false);
- */
-const box = (name, image, releaseDate, rating, genre, description, includeDeleteButton = true) => {
+
+async function GetSpotifyTrack(boxid) {
+    var textarea = document.getElementById('getMyId');
+    var id = textarea.value;
+
+    textarea.value = "";
+
+    let accessToken = "";
+    try {
+        accessToken = await getRefreshToken();
+        console.log(accessToken);
+    } catch (error) {
+        console.error("Error getting access token:", error);
+        return; // Exit the function if there's an error getting the access token
+    }
+
+    const url = `https://api.spotify.com/v1/tracks/${id}`;
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${accessToken}`
+        },
+        redirect: "follow"
+    };
+
+    fetch(url, requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+            const name = data.name;
+            const image = data.album.images[0].url;
+            const albumName = data.album.name;
+            const releaseData = data.album.release_date;
+            const artist = data.artists[0].name;
+            const preview = data.preview_url;
+            addNewBox(
+                name,
+                image,
+                'Release Date:@'+releaseData,
+                'Album:@'+albumName,
+                'Artist:@'+artist, 
+                `<audio controls><source src="${preview}" type="audio/mpeg"></audio>`,
+                true,
+                boxid
+            );
+        })
+        .catch((error) => console.error(error));
+}
+
+
+const box = (name, image, val1, val2, val3, description, includeDeleteButton = true) => {
+    let val1Parts = val1.split('@');
+    let val1One = val1Parts[0].trim();
+    let val1Two = val1Parts[1].trim();
+
+    let val2Parts = val2.split('@');
+    let val2One = val2Parts[0].trim();
+    let val2Two = val2Parts[1].trim();
+
+    let val3Parts = val3.split('@');
+    let val3One = val3Parts[0].trim();
+    let val3Two = val3Parts[1].trim();
+
     let deleteButtonHtml = '';
     if (includeDeleteButton) {
         deleteButtonHtml = `
@@ -57,43 +121,32 @@ const box = (name, image, releaseDate, rating, genre, description, includeDelete
                     <div class="decorative-line"></div>
                     <div class="row-3">
                         <div class="row">
-                            <div class="col-6">
-                                Release Date:
-                            </div>
-                            <div class="col-6 release-date right-side">
-                                ${releaseDate}
-                            </div>
+                        <div class="col-6">${val1One}</div>
+                        <div class="col-6 release-date right-side">${val1Two}</div></div>
+                        <div class="row">
+                            <div class="col-6">${val2One}</div>
+                            <div class="col-6 rating right-side">${val2Two}</div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
-                                Rating:
-                            </div>
-                            <div class="col-6 rating right-side">
-                                ${rating}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                Genre:
-                            </div>
-                            <div class="col-6 game-genre right-side">
-                                ${genre}
-                            </div>
+                            <div class="col-6">${val3One}</div>
+                            <div class="col-6 game-genre right-side">${val3Two}</div>
                         </div>
                     </div>
                     <div class="decorative-line"></div>
                     <div class="row-4">
-                        <textarea readonly>${description}</textarea>
+                        ${description}
                     </div>
                     ${deleteButtonHtml}
                 </div>
             </div>`;
 }
 
-const addNewBox = (name, image, releaseDate, rating, genre, description, includeDeleteButton, boxid) => {
+const addNewBox = (name, image, val1, val2, val3, description, includeDeleteButton, boxid) => {
     const container = document.querySelector('.boxes-'+boxid);
-    container.innerHTML += box(name, image, releaseDate, genre, rating, description, includeDeleteButton);
+    container.innerHTML += box(name, image, val1, val2, val3, description, includeDeleteButton);
 }
+
+
 document.addEventListener('click', function(e){
 
 });
@@ -110,138 +163,34 @@ const deleteBox = (event) => {
     }
 }
 
-
-
-function RetrieveAPI(path)
-{
-    const key = '51f03d61ff3442008e9b1aac81f4ca38';
-    const url=`${path}?key=${key}`;
-
-    const requestOptions = {
-        method: "GET",
-        redirect: "follow"
-    };
-
-    fetch(`${url}`, requestOptions)
-    .then((response) => response.text())
-    .then((result) => {
-        const data = JSON.parse(result);
-        console.log(data);
-        const resultDiv = document.getElementById('results');
-        resultDiv.innerHTML = '';
-        data.results.forEach(element => {
-            const el = `
-                <tr>
-                    <td><a href="?id=${element.id}">${element.name}</a></td>
-                    <td>${element.games_count}</td>
-                    <td>
-                        <button onclick="RetrieveCreator(${element.id})">Retrive creator data</button>
-                    </td>
-                </tr>
-            `;
-            resultDiv.innerHTML += el;
-        });
-
-    })
-    .catch((error) => console.error(error));
-}
-function RetrieveCreator(id)
-{
-    const key = '51f03d61ff3442008e9b1aac81f4ca38';
-    const url=`https://api.rawg.io/api/creators/${id}?key=${key}`;
-
-    const requestOptions = {
-        method: "GET",
-        redirect: "follow"
-    };
-
-    fetch(`${url}`, requestOptions)
-        .then((response) => response.text())
-        .then((result) => {
-            const data = JSON.parse(result);
-            console.log(data);
-            const creatorName = document.getElementById('creatorName');
-            creatorName.innerHTML = data.name;
-            const creatorRating = document.getElementById('creatorRating');
-            creatorRating.innerHTML = data.rating;
-            const myModal = new bootstrap.Modal('#exampleModal', {
-                keyboard: false,
-            }).show();
-        })
-        .catch((error) => console.error(error));
-}
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-function printId(){
-    const id = document.getElementById('id');
-    id.innerHTML = getParameterByName('id');
-}
-// printId();
-// RetrieveAPI('https://api.rawg.io/api/creators');
-
-/* 
-<table style="color: white;" width="100%">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Games Counts</th>
-            <th>Data</th>
-        </tr>
-    </thead>
-    <tbody id="results"></tbody>
-</table>
-<h1 style="color: white;" id="id"></h1>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="creatorName"></h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="creator">
-            <div class="row">
-                <div class="col-6">Rating:</div>
-                <div class="col-6" id="creatorRating"></div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-        </div>
-    </div>
-</div> 
-*/
-
-function CallID() {
+async function getRefreshToken() {
     const myHeaders = new Headers();
-    myHeaders.append("X-MAL-CLIENT-ID", "db4efc0dc6a74e56b48f4287576d15d0");
-    myHeaders.append("Authorization", "Basic ZGI0ZWZjMGRjNmE3NGU1NmI0OGY0Mjg3NTc2ZDE1ZDA6MDQ3ZDIxNGI4MGMzMDcwMjY0MDFiODJhNzNhNmVjZmMzZTNlYTQwY2NkOTgxZjJlMGZhODgzY2JjNjI4NjkxYQ==");
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("grant_type", "client_credentials");
+    urlencoded.append("client_id", "cb64ee65363244fd8e6e1d1096837bb9");
+    urlencoded.append("client_secret", "0382ac5ef4574473afa736ab358d138d");
 
     const requestOptions = {
-        method: "GET",
+        method: "POST",
         headers: myHeaders,
+        body: urlencoded,
         redirect: "follow"
     };
 
-    const textarea = document.getElementById('getMyId');
-    const id = textarea.value;
-
-    // Using a CORS proxy
-    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-    const apiUrl = `https://api.myanimelist.net/v2/anime/${id}?fields=id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,nsfw,created_at,updated_at,media_type,status,genres,my_list_status,num_episodes,start_season,broadcast,source,average_episode_duration,rating,pictures,background,related_anime,related_manga,recommendations,studios,statistics`;
-    const finalUrl = proxyUrl + apiUrl;
-
-    fetch(finalUrl, requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.error(error));
+    try {
+        const response = await fetch("https://accounts.spotify.com/api/token", requestOptions);
+        const data = await response.json();
+        return data.access_token;
+    } catch (error) {
+        console.error(error);
+        throw error; // Rethrow the error to be handled by the caller
+    }
 }
+
+/*
+GetGameByID(422, 1, false);
+GetGameByID(19345, 1, false);
+GetGameByID(50734, 1, false);
+ */

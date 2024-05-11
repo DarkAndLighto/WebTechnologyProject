@@ -63,25 +63,33 @@
                         <div class="col-md-12 col-lg-6">
                             <div class="form-floating">
                                 <textarea class="form-control" id="getMyId" placeholder="Password" style="height: 100px;"></textarea>
-                                <label for="floatingPassword">game id, name</label>
+                                <label for="floatingPassword">game id or name, or spotify song ID</label>
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-6">
-                            <button onclick="GetGameByIDWrapper(2)">
-                                New Box
+                        <div class="col-md-12 col-lg-3">
+                            <button onclick="GetGameByIDWrapper(2)" class="game-button">
+                                RAWG (game)
+                            </button>
+                        </div>
+                        <div class="col-md-12 col-lg-3">
+                            <button onclick="GetSpotifyTrack(2)" class="spotify-button">
+                                Spotify
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
 
-        <div class="container" style="max-width: 80%; margin-top: 40px; padding-bottom: 500px;">
+        <div class="container" style="max-width: 80%; margin-top: 40px; padding-bottom: 250px;">
             <div class="row boxes-2 row-gap-5">
                 
             </div>
         </div>
 
+
+        
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://kit.fontawesome.com/41752380dd.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

@@ -43,6 +43,7 @@
 .row-4{
     display: flex;
     justify-content: center;
+    height: 200px;
 }
 .row-4 textarea{
     color: white;
@@ -50,7 +51,11 @@
     background-color: transparent;
     resize: none;
     width: 90%;
-    height: 200px;
+}
+.row-4 audio{
+    width: 90%;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .row-delete{
@@ -68,10 +73,11 @@
     border-color: white;
     border-radius: 12px;
 
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 .row-delete button:hover{
-    background-color: red;
+    background-color: rgb(255, 155, 155);
+    color: black;
 }
 
 .api-header{
@@ -99,5 +105,10 @@
     border-radius: 12px;
 }
 .row-api-2 button:hover{
-    background-color: rgb(169, 169, 169);
+}
+.game-button:hover{
+    background-color: red;
+}
+.spotify-button:hover{
+    background-color: green;
 }

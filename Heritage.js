@@ -20,6 +20,7 @@ function ChangeLyricsEng()
     </p>
     `;
 }
+
 function ChangeLyricsArabic()
 {
     document.getElementById("anthem-lyrics").innerHTML = 
@@ -42,3 +43,4 @@ function ChangeLyricsArabic()
         </p>
     `;
 }
+ChangeLyricsArabic();
