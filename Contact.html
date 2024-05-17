@@ -47,93 +47,142 @@
     </div>
 
 
-    <div class="container container-sizing" style="padding: 0;">
-        <div class="blurry-box form-main">
-            <form action="Contact.php" method="post" id="myForm" enctype="multipart/form-data">
-                <div class="row title-control">
-                    Send me an email!
-                </div>
-    
-                <div class="row row-control row-gap-2">
-                    <div class="col-md-12 col-lg-6">
-                        <div class="form-floating">
-                            <input class="form-control" id="name" name="name" placeholder="">
-                            <label for="name">Name</label>
+    <div id="app">
+        <div class="container container-sizing" style="padding: 0;">
+            <div class="blurry-box form-main">
+                <form action="Contact.php" id="myForm" method="post" enctype="multipart/form-data" @submit.prevent="handleSubmit">
+                    <div class="row title-control">
+                        Send me an email!
+                    </div>
+            
+                    <div class="row row-control row-gap-2">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-floating">
+                                <input class="form-control" v-model="name" name="name" placeholder="">
+                                <label>Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-floating">
+                                <input class="form-control" v-model="lastname" name="lastname" placeholder="">
+                                <label>Last name</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-6">
-                        <div class="form-floating">
-                            <input class="form-control" id="lastname" name="lastname" placeholder="">
-                            <label for="lastname">Last name</label>
+            
+                    <div class="row row-control row-gap-2">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-floating">
+                                <input class="form-control" v-model="email" name="email" placeholder="">
+                                <label>Email</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-floating">
+                                <input class="form-control" v-model="phone" name="phone" placeholder="">
+                                <label>Phone</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-    
-                <div class="row row-control row-gap-2">
-                    <div class="col-md-12 col-lg-6">
-                        <div class="form-floating">
-                            <input class="form-control" id="email" name="email" placeholder="">
-                            <label for="email">Email</label>
+            
+                    <div class="row row-control">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="form-floating">
+                                <textarea class="form-control multiline-input" v-model="message" name="message" placeholder="" style="resize: none; height: 200px;"></textarea>
+                                <label>Message</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-6">
-                        <div class="form-floating">
-                            <input class="form-control" id="phone" name="phone" placeholder="">
-                            <label for="phone">Phone</label>
+            
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <button type="submit">Submit</button>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <button type="button" @click="clearForm">Clear</button>
                         </div>
                     </div>
-                </div>
-    
-                <div class="row row-control">
-                    <div class="col-md-12 col-lg-12">
-                        <div class="form-floating">
-                            <textarea class="form-control multiline-input" id="message" name="message" placeholder="" style="resize: none; height: 200px;"></textarea>
-                            <label for="message">Message</label>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <button type="submit">Submit</button>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <button type="button" onclick="clearForm()">Clear</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
     
-    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <script>
-        document.getElementById("myForm").addEventListener("submit", function(event) {
-            var name = document.getElementById("name").value;
-            var lastname = document.getElementById("lastname").value;
-            var email = document.getElementById("email").value;
-            var phone = document.getElementById("phone").value;
-            var message = document.getElementById("message").value;
+        const { createApp, ref } = Vue;
     
-            if (name === "" || lastname === "" || email === "" || phone === "" || message === "") {
-                alert("Please fill in all fields.");
-                event.preventDefault();
-            } else if (!validateEmail(email)) {
-                alert("Please enter a valid email address.");
-                event.preventDefault();
+        createApp({
+            setup() {
+                const name = ref('');
+                const lastname = ref('');
+                const email = ref('');
+                const phone = ref('');
+                const message = ref('');
+    
+                const handleSubmit = () => {
+                    if (!name.value || !lastname.value || !email.value || !phone.value || !message.value) {
+                        alert("Please fill in all fields.");
+                        return;
+                    } else if (!validateEmail(email.value)) {
+                        alert("Please enter a valid email address.");
+                        return;
+                    }
+    
+                    const formData = new FormData();
+                    formData.append('name', name.value);
+                    formData.append('lastname', lastname.value);
+                    formData.append('email', email.value);
+                    formData.append('phone', phone.value);
+                    formData.append('message', message.value);
+    
+                    fetch('contact.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        console.log(data);
+                        window.location.href = 'contact.php'; // Redirect after successful submission
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the form submission:', error);
+                    });
+                    document.getElementById('myForm').submit();
+                };
+    
+                const validateEmail = (email) => {
+                    const re = /\S+@\S+\.\S+/;
+                    return re.test(email);
+                };
+    
+                const clearForm = () => {
+                    name.value = '';
+                    lastname.value = '';
+                    email.value = '';
+                    phone.value = '';
+                    message.value = '';
+                };
+    
+                return {
+                    name,
+                    lastname,
+                    email,
+                    phone,
+                    message,
+                    handleSubmit,
+                    clearForm
+                };
             }
-        });
-    
-        function validateEmail(email) {
-            var re = /\S+@\S+\.\S+/;
-            return re.test(email);
-        }
-    
-        function clearForm() {
-            document.getElementById("myForm").reset();
-        }
+        }).mount('#app');
     </script>
     
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://kit.fontawesome.com/41752380dd.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
