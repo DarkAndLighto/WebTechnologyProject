@@ -1,13 +1,11 @@
 function GetGameByIDWrapper(boxid) {
     var textarea = document.getElementById('getMyId');
     var id = textarea.value;
-    GetGameByID(id, boxid);
+    textarea.value = "";
+    GetGameByID(id, boxid, true);
 }
 
 function GetGameByID(id, boxid, includeDeleteButton = true) {
-    var textarea = document.getElementById('getMyId');
-    textarea.value = "";
-
     const key = '51f03d61ff3442008e9b1aac81f4ca38';
     const url = `https://api.rawg.io/api/games/${id}?key=${key}`;
 
@@ -43,6 +41,9 @@ async function GetSpotifyTrack(boxid) {
     var id = textarea.value;
 
     textarea.value = "";
+    GetSpotifyTrackByID(id, boxid, true);
+}
+async function GetSpotifyTrackByID(id, boxid, includeDeleteButton = true){
 
     let accessToken = "";
     try {
@@ -78,13 +79,12 @@ async function GetSpotifyTrack(boxid) {
                 'Album:@'+albumName,
                 'Artist:@'+artist, 
                 `<audio controls><source src="${preview}" type="audio/mpeg"></audio>`,
-                true,
+                includeDeleteButton,
                 boxid
             );
         })
         .catch((error) => console.error(error));
 }
-
 
 const box = (name, image, val1, val2, val3, description, includeDeleteButton = true) => {
     let val1Parts = val1.split('@');
@@ -189,8 +189,10 @@ async function getRefreshToken() {
     }
 }
 
-/*
+
 GetGameByID(422, 1, false);
 GetGameByID(19345, 1, false);
 GetGameByID(50734, 1, false);
- */
+GetSpotifyTrackByID(`5XeFesFbtLpXzIVDNQP22n`, 1, false);
+GetSpotifyTrackByID(`5zxJ3BZyd6BK2gX4b2RnB4`, 1, false);
+GetSpotifyTrackByID(`26hOm7dTtBi0TdpDGl141t`, 1, false);
